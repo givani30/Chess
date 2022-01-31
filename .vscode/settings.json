@@ -1,0 +1,7 @@
+{
+    "maven.view": "hierarchical",
+    "java.project.sourcePaths": [
+        "chessapp/src/main/java/com/chess"
+    ],
+    "java.dependency.syncWithFolderExplorer": true
+}
