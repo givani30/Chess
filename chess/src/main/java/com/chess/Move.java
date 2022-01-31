@@ -1,7 +1,9 @@
 package com.chess;
 
-import com.chess.pieces.Piece;
+import com.chess.board.Board;
+import com.chess.piece.Piece;
 import com.chess.player.Player;
+import com.chess.spot.Spot;
 
 public class Move {
     private Game game;
@@ -12,6 +14,7 @@ public class Move {
     private Piece pieceMoved;
     private Piece pieceKilled;
     private boolean castlingMove;
+
     public Move(Game game, Player player, Spot start, Spot end){
 
         this.game=game;

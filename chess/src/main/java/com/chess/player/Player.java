@@ -1,15 +1,15 @@
 package com.chess.player;
 
-import com.chess.pieces.Color;
+import com.chess.common.ChessColor;
 
 public abstract class Player {
-    private final Color playerColor;
+    private final ChessColor playerChessColor;
     private boolean isHuman;
 
-    protected Player(Color color){
-        playerColor=color;
+    protected Player(ChessColor chessColor){
+        playerChessColor = chessColor;
     }
-    public Color getPlayerColor() {
-        return playerColor;
+    public ChessColor getPlayerColor() {
+        return playerChessColor;
     }
 }
