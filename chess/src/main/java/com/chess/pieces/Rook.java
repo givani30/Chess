@@ -7,6 +7,7 @@ public class Rook extends Piece {
 
     public Rook(Color targetColor) {
         super(targetColor);
+        setPieceType(PieceType.ROOK);
     }
 
     @Override

@@ -7,12 +7,23 @@ public class Spot {
     private int xLoc;
     private int yLoc;
 
+    /**
+     * Constructor for a spot on a chess board
+     * @param xLoc The x location
+     * @param yLoc The y location
+     * @param piece The chess piece in the spot
+     */
     public Spot(int xLoc, int yLoc, Piece piece) {
         setPiece(piece);
         setxLoc(xLoc);
         setyLoc(yLoc);
     }
 
+    /**
+     * Constructor to generate an empty spot
+     * @param xLoc The x location
+     * @param yLoc The y location
+     */
     public Spot(int xLoc, int yLoc) {
         setxLoc(xLoc);
         setyLoc(yLoc);

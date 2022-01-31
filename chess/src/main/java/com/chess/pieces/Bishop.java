@@ -8,6 +8,7 @@ public class Bishop extends Piece {
 
     public Bishop(Color targetColor) {
         super(targetColor);
+        setPieceType(PieceType.BISHOP);
     }
 
     @Override

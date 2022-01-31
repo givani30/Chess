@@ -3,7 +3,7 @@ package com.chess.pieces;
 import com.chess.Board;
 import com.chess.Spot;
 
-enum Pieces{
+enum PieceType {
     PAWN,BISHOP,KING,QUEEN,ROOK,KNIGHT
     }
 
@@ -11,6 +11,7 @@ public abstract class Piece {
 
     private com.chess.pieces.Color pieceColor;
     private boolean isAlive;
+    private PieceType pieceType;
 
     protected Piece(Color targetColor) {
 
@@ -51,6 +52,14 @@ public abstract class Piece {
         isAlive = !kill;
     }
 
+    public PieceType getPieceType() {
+        return pieceType;
+    }
+
+    public void setPieceType(PieceType pieceType) {
+        this.pieceType = pieceType;
+    }
+
     /**
      * Checks whether the piece can move
      *
@@ -61,3 +70,4 @@ public abstract class Piece {
      */
     public abstract boolean canMove(Board board, Spot start, Spot end);
 }
+

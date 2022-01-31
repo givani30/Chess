@@ -9,6 +9,7 @@ public class King extends Piece {
 
     public King(Color targetColor) {
         super(targetColor);
+        setPieceType(PieceType.KING);
         canCastle = true;
     }
 

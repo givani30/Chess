@@ -7,13 +7,19 @@ public class Board {
     private static final int LENGTH = 8;
     private static final int WIDTH = 8;
     private Spot[][] playingBoard;
+    private Color playerTurn;
 
     public Board() {
         this.createBoard();
-        this.initBoard();
-
     }
 
+    /**
+     * Get the spot at location
+     * @param x The x location of the spot
+     * @param y The y loacation of the spot
+     * @return The Spot
+     * @throws Exception If index is out of bounds
+     */
     public Spot getSpot(int x, int y) throws Exception {
         if (x < 0 || x > 7 || y < 0 || y > 7) {
             throw new Exception("Index out of bounds");
@@ -21,7 +27,9 @@ public class Board {
         return playingBoard[x][y];
     }
 
-    // Empties the whole board
+    /**
+     * Clears the board
+     */
     public void createBoard() {
 
         playingBoard = new Spot[LENGTH][WIDTH];
@@ -34,17 +42,20 @@ public class Board {
         }
     }
 
+    /**
+     * Clears boards
+     */
     public void clearBoard() {
-
         for (int i = 0; i < LENGTH; i++) {
             for (int j = 0; j < WIDTH; j++) {
                 playingBoard[i][j].clear();
             }
         }
-
     }
 
-    /** initializes board according to normal chess */
+    /**
+     * initializes board according to normal chess
+     */
     public void initBoard() {
 
         // White pieces
@@ -71,6 +82,16 @@ public class Board {
         playingBoard[7][7].setPiece(new Rook(Color.BLACK));
         for (int i = 0; i < 7; i++) {
             playingBoard[i][6].setPiece(new Pawn(Color.BLACK));
+
         }
+        playerTurn = Color.WHITE;
+    }
+
+    /**
+     * Loads board according to FEN notation
+     * @param fenSTRING the FEN string for the board
+     */
+    public void loadFEN(String fenSTRING) {
+        //TODO: Implement code
     }
 }

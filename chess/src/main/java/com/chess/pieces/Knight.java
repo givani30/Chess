@@ -8,6 +8,7 @@ public class Knight extends Piece {
 
     public Knight(Color targetColor) {
         super(targetColor);
+        setPieceType(PieceType.KNIGHT);
     }
 
     @Override

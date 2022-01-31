@@ -8,6 +8,7 @@ public class Queen extends Piece {
 
     public Queen(Color targetColor) {
         super(targetColor);
+        setPieceType(PieceType.QUEEN);
     }
 
     @Override
@@ -16,8 +17,8 @@ public class Queen extends Piece {
         // Check whether piece is alive
         if (!isAlive() ) {return false;}
 
-        // TODO Auto-generated method stub
-        return false;
+        // TODO Move logic
+        return true;
     }
 
 }
