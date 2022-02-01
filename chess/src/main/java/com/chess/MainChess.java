@@ -26,6 +26,7 @@ public final class MainChess {
         Board board = new Board();
         board.initBoard();
         board.printBoard();
+        board.loadFEN("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
 
 
         drawBoard();

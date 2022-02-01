@@ -8,8 +8,9 @@ public class Location {
     private final int rank;
 
     public Location(File file, int rank) {
-        this.file = file;
         this.rank = rank;
+        this.file = file;
+
     }
 
     public File getFile() {

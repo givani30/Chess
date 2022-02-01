@@ -44,6 +44,11 @@ public class Spot {
      */
     public void setPiece(Piece piece) {
         this.piece = piece;
+        piece.setCurrentSpot(this);
+    }
+
+    public boolean isOccupied(){
+        return (this.getPiece()!=null);
     }
 
     /**

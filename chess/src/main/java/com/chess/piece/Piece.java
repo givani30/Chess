@@ -16,7 +16,6 @@ public abstract class Piece {
     private Spot currentSpot;
 
     protected Piece(ChessColor targetChessColor) {
-
         pieceChessColor = targetChessColor;
         this.isAlive = true;
 
@@ -62,6 +61,14 @@ public abstract class Piece {
         this.pieceType = pieceType;
     }
 
+    public Spot getCurrentSpot() {
+        return currentSpot;
+    }
+
+    public void setCurrentSpot(Spot currentSpot) {
+        this.currentSpot = currentSpot;
+    }
+
     /**
      * Checks whether the piece can move
      *
@@ -78,5 +85,6 @@ public abstract class Piece {
             "-" + pieceType +
             '}';
     }
+
 }
 
