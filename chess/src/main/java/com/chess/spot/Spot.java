@@ -64,7 +64,7 @@ public class Spot {
 
     /** Removes a piece from the spot */
     public void clear() {
-        this.setPiece(null);
+        this.piece = null;
     }
 
     @Override

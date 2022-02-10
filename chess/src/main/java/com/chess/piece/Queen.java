@@ -6,8 +6,6 @@ import com.chess.spot.Spot;
 import com.chess.common.ChessColor;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class Queen extends Piece implements Movable {
 
@@ -16,13 +14,13 @@ public class Queen extends Piece implements Movable {
 
     public Queen(ChessColor targetChessColor) {
         super(targetChessColor);
-        setPieceType(PieceType.QUEEN);
+        setPieceType(PieceTypes.QUEEN);
         this.bishop = new Bishop(targetChessColor);
         this.rook= new Rook(targetChessColor);
     }
     public Queen(ChessColor targetChessColor, Movable bishop, Movable rook){
         super(targetChessColor);
-        setPieceType(PieceType.QUEEN);
+        setPieceType(PieceTypes.QUEEN);
         this.bishop=bishop;
         this.rook=rook;
 
@@ -40,10 +38,8 @@ public class Queen extends Piece implements Movable {
 
     @Override
     public ArrayList<Location> getValidMoves(Board board) {
-        ArrayList<Location> moveCandidates = new ArrayList<>();
-        moveCandidates.addAll(bishop.getValidMoves(board));
-        moveCandidates.addAll(rook.getValidMoves(board));
-        return moveCandidates;
+        Location currentLoc = this.getCurrentSpot().getLocation();
+        return getValidMoves(board,currentLoc);
     }
 
 

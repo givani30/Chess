@@ -57,4 +57,6 @@ public class Game {
     public void setPlayerTurn(ChessColor playerTurn) {
         this.playerTurn = playerTurn;
     }
+
+
 }

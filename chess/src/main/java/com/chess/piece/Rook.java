@@ -14,7 +14,7 @@ public class Rook extends Piece implements Movable {
 
     public Rook(ChessColor targetChessColor) {
         super(targetChessColor);
-        setPieceType(PieceType.ROOK);
+        setPieceType(PieceTypes.ROOK);
     }
 
     @Override
@@ -31,7 +31,9 @@ public class Rook extends Piece implements Movable {
 
     @Override
     public ArrayList<Location> getValidMoves(Board board) {
-        return null;
+        Location currentLoc = this.getCurrentSpot().getLocation();
+        return getValidMoves(board,currentLoc);
+
     }
 
     @Override
@@ -42,6 +44,7 @@ public class Rook extends Piece implements Movable {
         getRankCandidates(moveCandidates,locationSpotMap,currentLoc,-1);
         getFileCandidates(moveCandidates,locationSpotMap,currentLoc,1);
         getFileCandidates(moveCandidates,locationSpotMap,currentLoc,-1);
+        return moveCandidates;
     }
 
 

@@ -4,15 +4,11 @@ import com.chess.board.Board;
 import com.chess.spot.Spot;
 import com.chess.common.ChessColor;
 
-enum PieceType {
-    PAWN,BISHOP,KING,QUEEN,ROOK,KNIGHT
-    }
-
-public abstract class Piece {
+public abstract class Piece implements Movable {
 
     private final ChessColor pieceChessColor;
     private boolean isAlive;
-    private PieceType pieceType;
+    private PieceTypes pieceTypes;
     private Spot currentSpot;
 
     protected Piece(ChessColor targetChessColor) {
@@ -53,12 +49,12 @@ public abstract class Piece {
         isAlive = !kill;
     }
 
-    public PieceType getPieceType() {
-        return pieceType;
+    public PieceTypes getPieceType() {
+        return pieceTypes;
     }
 
-    public void setPieceType(PieceType pieceType) {
-        this.pieceType = pieceType;
+    public void setPieceType(PieceTypes pieceTypes) {
+        this.pieceTypes = pieceTypes;
     }
 
     public Spot getCurrentSpot() {
@@ -82,7 +78,7 @@ public abstract class Piece {
     @Override
     public String toString() {
         return pieceChessColor +
-            "-" + pieceType +
+            "-" + pieceTypes +
             '}';
     }
 

@@ -1,9 +1,12 @@
 package com.chess.board;
 
+import com.chess.Move;
 import com.chess.common.File;
 import com.chess.common.Location;
 import com.chess.piece.*;
 import com.chess.common.ChessColor;
+import com.chess.player.HumanPlayer;
+import com.chess.player.Player;
 import com.chess.spot.Spot;
 
 import java.util.*;
@@ -13,12 +16,22 @@ public class Board {
     private static final int BOARD_LENGTH = 8;
     private static final int BOARD_WIDTH = 8;
     private final Spot[][] playingBoard=new Spot[BOARD_LENGTH][BOARD_WIDTH];
+    private final ArrayList<Piece> lightPieces = new ArrayList<>();
+    private final ArrayList<Piece> darkPieces = new ArrayList<>();
+    private ArrayList<Move> moves;
     private ChessColor playerTurn;
+    private final Player playerWhite;
+    private final Player playerBlack;
     private final Map<Location,Spot> locationSpotMap;
+    private final Map<Piece, Location> pieceLocationMap;
 
     public Board() {
         locationSpotMap=new HashMap<>();
+        pieceLocationMap=new HashMap<>();
         this.createBoard();
+        this.playerWhite = new HumanPlayer(ChessColor.LIGHT);
+        this.playerBlack = new HumanPlayer(ChessColor.DARK);
+        moves = new ArrayList<>();
     }
 
     /**
@@ -28,9 +41,9 @@ public class Board {
      * @return The Spot
      * @throws Exception If index is out of bounds
      */
-    public Spot getSpot(int x, int y) throws Exception {
+    public Spot getSpot(int x, int y) {
         if (x < 0 || x > 7 || y < 0 || y > 7) {
-            throw new Exception("Index out of bounds");
+            throw new IndexOutOfBoundsException("Index out of bounds");
         }
         return playingBoard[x][y];
     }
@@ -53,31 +66,55 @@ public class Board {
         }
     }
 
-    public Map<Location, Spot> getLocationSpotMap() {
-        return locationSpotMap;
+    public void makeMove(Location startLoc, Location endLoc){
+        Spot start = locationSpotMap.get(startLoc);
+        Spot end = locationSpotMap.get(endLoc);
+        Move move = new Move(this,getCurrentPlayer(),start,end);
+        locationSpotMap.get(startLoc).clear();
     }
+    public void makeMove(Spot start, Spot end){
+
+        //Checks if it is the players turn
+        if(playerTurn!=start.getPiece().getPieceColor()){
+            System.out.println("It is " + playerTurn +"'s turn");}
+            //Checks if the move is pseudo-legal
+        Move move = new Move(this,getCurrentPlayer(),start,end);
+        start.clear();
+        moves.add(move);
+    }
+
 
     public void printBoard(){
+        int i=0;
         for(Spot[] row : playingBoard){
+            System.out.print((i+1)+" ");
             for (Spot spot:
                  row) {
-                System.out.print(spot);
+                if(spot.isOccupied()){
+                    Piece piece = spot.getPiece();
+                    char handle= piece.getPieceType().getChar(piece.getPieceColor());
+                    System.out.print(handle+" ");
+                } else {
+                    //Empty square
+                    System.out.print("- ");
+                }
             }
+            i++;
             System.out.println();
         }
+        System.out.print("  ");
+        for(File file: File.values()){
+            System.out.print(file.name() + " ");
+        }
+        System.out.println();
     }
 
-    public Spot getSpot(Location loc){
-        int rank = loc.getRank();
-        File file = loc.getFile();
-
-        return null;
-    }
 
     /**
      * Clears boards
      */
     public void clearBoard() {
+        moves.clear();
         for (int i = 0; i < playingBoard.length; i++) {
             for (int j = 0; j < playingBoard[i].length; j++) {
                 playingBoard[i][j].clear();
@@ -89,7 +126,7 @@ public class Board {
      * initializes board according to normal chess
      */
     public void initBoard() {
-
+        clearBoard();
         // White pieces
         playingBoard[0][0].setPiece(new Rook(ChessColor.LIGHT));
         playingBoard[0][1].setPiece(new Knight(ChessColor.LIGHT));
@@ -99,7 +136,7 @@ public class Board {
         playingBoard[0][5].setPiece(new Bishop(ChessColor.LIGHT));
         playingBoard[0][6].setPiece(new Knight(ChessColor.LIGHT));
         playingBoard[0][7].setPiece(new Rook(ChessColor.LIGHT));
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 8; i++) {
             playingBoard[1][i].setPiece(new Pawn(ChessColor.LIGHT));
         }
 
@@ -112,13 +149,17 @@ public class Board {
         playingBoard[7][5].setPiece(new Bishop(ChessColor.DARK));
         playingBoard[7][6].setPiece(new Knight(ChessColor.DARK));
         playingBoard[7][7].setPiece(new Rook(ChessColor.DARK));
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 8; i++) {
             playingBoard[6][i].setPiece(new Pawn(ChessColor.DARK));
 
         }
         playerTurn = ChessColor.LIGHT;
     }
 
+    public String getFEN(){
+        //TODO
+        return null;
+    }
     /**
      * Loads board according to FEN notation
      * @param fenSTRING the FEN string for the board
@@ -127,7 +168,7 @@ public class Board {
 
         String[] data=fenSTRING.split(" ");
         String position = data[0];
-        playerTurn=(Objects.equals(data[1], "w"))? ChessColor.LIGHT : ChessColor.DARK ;
+        playerTurn=(data[1].equals("w"))? ChessColor.LIGHT : ChessColor.DARK ;
 
         String[] ranks = position.split("/");
         Collections.reverse(Arrays.asList(ranks));
@@ -136,17 +177,43 @@ public class Board {
         }
         else{
             clearBoard();
+           File[] files = File.values();
+           int fileIterator = 0;
         for (String rank : ranks) {
             char[] chars = rank.toCharArray();
+            int rankIndex = 0;
             for (int i = 0; i < chars.length; i++) {
                 char index =chars[i];
                 if( Character.isDigit(index)){
-                    Character.getNumericValue(index);
+                    //Skip values
+                    rankIndex += index;
+                }else {
+                    playingBoard[fileIterator][rankIndex].setPiece(PieceFactory.pieceBuilder(index));
+                    rankIndex++;
+                    //Place pieces
                 }
-
             }
+            fileIterator++;
         }
         }
-        //TODO: Implement code
+        //TODO: Implement behaviour for castling/en passant
+    }
+    public Map<Location, Spot> getLocationSpotMap() {
+        return locationSpotMap;
+    }
+
+    public ArrayList<Piece> getLightPieces() {
+        return lightPieces;
+    }
+
+    public ArrayList<Piece> getDarkPieces() {
+        return darkPieces;
+    }
+
+    public ChessColor getPlayerTurn() {
+        return playerTurn;
+    }
+    public Player getCurrentPlayer(){
+        return playerTurn.equals(playerBlack.getPlayerColor())? playerBlack: playerWhite ;
     }
 }

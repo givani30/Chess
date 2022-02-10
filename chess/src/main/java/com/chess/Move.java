@@ -6,50 +6,77 @@ import com.chess.player.Player;
 import com.chess.spot.Spot;
 
 public class Move {
-    private Game game;
-    private Board board;
-    private Player player;
-    private Spot start;
-    private Spot end;
-    private Piece pieceMoved;
+    private final Board board;
+    private final Player player;
+    private final Spot start;
+    private final Spot end;
+    private final Piece pieceMoved;
     private Piece pieceKilled;
     private boolean castlingMove;
 
-    public Move(Game game, Player player, Spot start, Spot end){
+    public Move(Board board, Player player, Spot start, Spot end){
 
-        this.game=game;
-        board=game.getGameBoard();
+        this.board=board;
         this.player=player;
         this.start=start;
         this.end=end;
         this.pieceMoved= start.getPiece();
 
-        //Checks if it is the players turn
-        if(!playerTurn(game,player)){
-            System.err.println("It is not " + player.getPlayerColor().toString() +"'s turn");
-
-            //Checks if the move is pseudo-legal
-        }else if (!pieceMoved.canMove(board, start, end)){
-            System.err.println("Piece cannot perform move!");
-        }
-
+    if (!pieceMoved.canMove(board, start, end)){
+        System.out.println("Piece cannot perform move!");
+    }
         //Performs move
         else{
-            end.getPiece().kill();
+            if(end.isOccupied()) {
+                pieceKilled= end.getPiece();
+                end.getPiece().kill();
+            }
             end.clear();
             end.setPiece(start.getPiece());
             start.clear();
-
         }
+    }
+
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public Spot getStart() {
+        return start;
+    }
+
+    public Spot getEnd() {
+        return end;
+    }
+
+    public Piece getPieceMoved() {
+        return pieceMoved;
+    }
+
+    public Piece getPieceKilled() {
+        return pieceKilled;
+    }
+
+    public boolean isCastlingMove() {
+        return castlingMove;
+    }
+
+    public void setCastlingMove(boolean castlingMove) {
+        this.castlingMove = castlingMove;
     }
 
     /**
      * Small check to know whether it is the players turn
-     * @param game The current game
+     * @param board The current board
      * @param player The current player
      * @return Whether it is the players turn or not
      */
-    public static boolean playerTurn(Game game, Player player){
-        return game.getPlayerTurn()==player.getPlayerColor();
+    public static boolean playerTurn(Board board, Player player){
+        return board.getPlayerTurn()==player.getPlayerColor();
     }
 }

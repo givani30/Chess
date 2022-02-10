@@ -7,7 +7,6 @@ import com.chess.spot.Spot;
 import com.chess.common.ChessColor;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -17,7 +16,7 @@ public class Pawn extends Piece implements Movable {
 
     public Pawn(ChessColor targetChessColor) {
         super(targetChessColor);
-        setPieceType(PieceType.PAWN);
+        setPieceType(PieceTypes.PAWN);
     }
 
     @Override
@@ -47,16 +46,16 @@ public class Pawn extends Piece implements Movable {
 
 
         Map<Location, Spot> locationSpotMap = board.getLocationSpotMap();
-        List<Location> validMoves=moveCandidates.stream()
+       ArrayList<Location> validMoves=moveCandidates.stream()
             .filter(locationSpotMap::containsKey)
-            .collect(Collectors.toList());
+            .collect(Collectors.toCollection(ArrayList::new));
 
-        return (ArrayList<Location>) validMoves.stream().filter(candidate ->{
-            if(candidate.getFile().equals(currentLoc.getFile()) &&
-                locationSpotMap.get(candidate).isOccupied()){
+        return validMoves.stream().filter(candidate -> {
+            if (candidate.getFile().equals(currentLoc.getFile()) &&
+                locationSpotMap.get(candidate).isOccupied()) {
                 return false;
             }
             return !locationSpotMap.get(candidate).getPiece().getPieceColor().equals(this.getPieceColor());
-        }).collect(Collectors.toList());
+        }).collect(Collectors.toCollection(ArrayList::new));
     }
 }

@@ -27,17 +27,17 @@ Z
 chess/chess.iml,d\8\d8d63df9de9010c6b9778514350ff20a71ec3b29
 y
 I.idea/libraries/Maven__org_eclipse_sisu_org_eclipse_sisu_inject_0_3_3.xml,b\e\be9afb76964a377e09cd113e9b53748296b4f382
-^
-.chess/src/main/java/com/chess/common/File.java,1\d\1d476ab85acaafc6f4bcfb1a6a59b0ef3c621df2
-W
-'chess/src/main/java/com/chess/Game.java,8\1\8112bfa1dfe2d340ad7b610f599956f44894d2d2
-_
-/chess/src/main/java/com/chess/piece/Knight.java,4\4\445fa7279eb0d1263d15d96896203b0b5d1e271e
 `
 0chess/src/main/java/com/chess/player/Player.java,3\e\3ee591e10d264569c79c06b685264615c5177361
 =
 chess/pom.xml,6\5\65b813044613181262fc0edaa1c48638b884007b
-W
-'chess/src/main/java/com/chess/Move.java,4\c\4cbaf858a598054e7870072ab5fb7c8d92cae3e6
+b
+2chess/src/main/java/com/chess/common/Location.java,0\5\059d6fe082b4f1dc33400f16e442557bdc05b671
+`
+0chess/src/test/java/com/chess/test/MoveTest.java,a\7\a7d39c4beb76b741390c3210283a3602d70ba7d4
+^
+.chess/src/main/java/com/chess/common/File.java,1\d\1d476ab85acaafc6f4bcfb1a6a59b0ef3c621df2
+e
+5chess/src/main/java/com/chess/player/HumanPlayer.java,5\7\57ce129d94d2a3bb78905b89d0e3550b808f0f71
 d
 4chess/src/main/java/com/chess/common/ChessColor.java,1\a\1acb732211f6daf6ef3656e4c3a072f9aa7e9d9e
