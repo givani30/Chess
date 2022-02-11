@@ -18,8 +18,8 @@ public final class PieceFactory {
     public static Piece pieceBuilder(char pieceString){
         ChessColor pieceColor;
         Piece newPiece;
-        if(Character.isUpperCase(pieceString)){pieceColor = ChessColor.LIGHT;}
-        else pieceColor =ChessColor.DARK;
+        if(Character.isUpperCase(pieceString)){pieceColor = ChessColor.WHITE;}
+        else pieceColor =ChessColor.BLACK;
 
         switch(Character.toLowerCase(pieceString)){
             case 'k':

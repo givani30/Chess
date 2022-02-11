@@ -1,5 +1,5 @@
 package com.chess.common;
 
-public enum File {
+public enum ChessFiles {
     A,B,C,D,E,F,G,H
 }

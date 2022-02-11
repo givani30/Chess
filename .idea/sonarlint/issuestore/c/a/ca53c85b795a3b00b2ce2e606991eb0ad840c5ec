@@ -1,0 +1,28 @@
+
+v
+java:S1450"YRemove the "darkPieces" field and declare it as a local variable in the relevant methods.(ğœ˜Ú8ÃÒÂÄî/
+|
+java:S1450"ZRemove the "lightPieces" field and declare it as a local variable in the relevant methods.(…ƒÌ€üÿÿÿÿ8ÙÆÃÄî/
+D
+java:S1481N")Remove this unused "move" local variable.(‹¢˜ıÿÿÿÿ
+N	java:S106U"9Replace this use of System.out or System.err by a logger.(Úæ§‚
+S	java:S106`"9Replace this use of System.out or System.err by a logger.( ÒšŸıÿÿÿÿ
+S	java:S106f"9Replace this use of System.out or System.err by a logger.(¬ÎÁ‰øÿÿÿÿ
+S	java:S106i"9Replace this use of System.out or System.err by a logger.(¹¦Ô„ÿÿÿÿÿ
+S	java:S106m"9Replace this use of System.out or System.err by a logger.(ªÓ¼áşÿÿÿÿ
+N	java:S106o"9Replace this use of System.out or System.err by a logger.(×•œ²
+N	java:S106q"9Replace this use of System.out or System.err by a logger.(‚‡¥¯
+S	java:S106s"9Replace this use of System.out or System.err by a logger.(ªÓ¼áşÿÿÿÿ
+I
+java:S1135‹"2Complete the task associated to this TODO comment.(…ïœ†
+O	java:S106›"9Replace this use of System.out or System.err by a logger.(Ë¦êä
+F
+java:S1481Ÿ"*Remove this unused "files" local variable.(‹èíùşÿÿÿÿ
+H
+java:S1135³"2Complete the task associated to this TODO comment.(›§
+‡
+java:S1319¹"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ƒûÂ
+Œ
+java:S1319Å"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(¢Ñö½úÿÿÿÿ
+
+java:S1319Ñ"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(†ê”¤ùÿÿÿÿ8ÉˆôÄî/

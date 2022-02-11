@@ -21,6 +21,7 @@ public class Move {
         this.start=start;
         this.end=end;
         this.pieceMoved= start.getPiece();
+        this.pieceKilled=null;
 
     if (!pieceMoved.canMove(board, start, end)){
         System.out.println("Piece cannot perform move!");

@@ -4,16 +4,17 @@ import java.util.Objects;
 
 public class Location {
 
-    private final File file;
+    private final ChessFiles file;
     private final int rank;
 
-    public Location(File file, int rank) {
+    public Location(ChessFiles file, int rank) {
         this.rank = rank;
         this.file = file;
 
+
     }
 
-    public File getFile() {
+    public ChessFiles getFile() {
         return file;
     }
 

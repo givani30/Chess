@@ -15,7 +15,7 @@ public class Game {
         gameBoard.initBoard();
         this.playerWhite = player1;
         this.playerBlack = player2;
-        setPlayerTurn(ChessColor.LIGHT);
+        setPlayerTurn(ChessColor.WHITE);
     }
 
     /**

@@ -5,6 +5,7 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
 import javax.swing.border.*;
+import java.io.File;
 import java.net.URL;
 import javax.imageio.ImageIO;
 
@@ -149,7 +150,7 @@ public class ChessGUI {
     private final void createImages() {
         try {
             URL url = new URL("http://i.stack.imgur.com/memI0.png");
-            BufferedImage bi = ImageIO.read(url);
+            BufferedImage bi = ImageIO.read(new File("chess/ChessPieces.png"));
             for (int ii = 0; ii < 2; ii++) {
                 for (int jj = 0; jj < 6; jj++) {
                     chessPieceImages[ii][jj] = bi.getSubimage(

@@ -1,0 +1,40 @@
+
+t
+java:S1450"YRemove the "chessBoard" field and declare it as a local variable in the relevant methods.(‚ùÕøÿÿÿÿ
+M
+java:S1948"2Make "chessPieceImages" transient or serializable.(‘Ôêªıÿÿÿÿ
+=
+java:S1948!"'Make "board" transient or serializable.(Óÿ²ã
+N
+java:S1948""3Make "locationButtonMap" transient or serializable.(‰„Õ„ıÿÿÿÿ
+P
+java:S1161+":Add the "@Override" annotation above this method signature(¶øÂÁ
+K
+java:S1874-"5Remove this use of "drawPiecesOld"; it is deprecated.(ÚöªÂ
+g
+java:S37762"RRefactor this method to reduce its Cognitive Complexity from 24 to the 15 allowed.(×ÏÒA
+M
+java:S1135A"2Complete the task associated to this TODO comment.(šô”Óøÿÿÿÿ
+H
+java:S1135B"2Complete the task associated to this TODO comment.(î´Ï¼
+H
+java:S1135D"2Complete the task associated to this TODO comment.(¬‰ŸŸ
+Q	java:S125"<This block of commented-out lines of code should be removed.(¬å’º
+g	java:S128™"LEnd this switch case with an unconditional break, return or throw statement.(£Ş¾Ëşÿÿÿÿ
+Q
+java:S1133Ø"5Do not forget to remove this deprecated code someday.(Ÿ¶ÖÓùÿÿÿÿ
+D
+java:S1123Ø"(Add the missing @deprecated Javadoc tag.(Ÿ¶ÖÓùÿÿÿÿ
+W	java:S125¾"<This block of commented-out lines of code should be removed.(¢÷°Æûÿÿÿÿ
+o	java:S131å"YComplete cases by adding the missing enum constants or add a default case to this switch.(ôÅ¤µ
+P
+java:S2864‚"4Iterate over the "entrySet" instead of the "keySet".(®†ÿˆúÿÿÿÿ
+t	java:S131Œ"YComplete cases by adding the missing enum constants or add a default case to this switch.(ßÉ›Úûÿÿÿÿ
+ƒ
+java:S1319§"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(ß”Áe
+b
+java:S1301˜"KReplace this "switch" statement by "if" statements to increase readability.(ãŞ¿Ç
+g
+java:S2259·"PA "NullPointerException" could be thrown; "bufferedChessImage" is nullable here.(Œ»úÂ
+M
+java:S2589Y"7Remove this expression which always evaluates to "true"(ƒ¯ı˜

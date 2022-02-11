@@ -12,11 +12,15 @@ import java.util.stream.Collectors;
 
 public class Pawn extends Piece implements Movable {
 
+    private int moveDirection=1;
     private boolean isFirstMove=true;
 
     public Pawn(ChessColor targetChessColor) {
         super(targetChessColor);
         setPieceType(PieceTypes.PAWN);
+        if(this.getPieceColor()==ChessColor.BLACK){
+            moveDirection = -1;
+        }
     }
 
     @Override
@@ -37,12 +41,12 @@ public class Pawn extends Piece implements Movable {
 
         ArrayList<Location> moveCandidates = new ArrayList<>();
 
-        moveCandidates.add(LocationTools.build(currentLoc,0,1));
+        moveCandidates.add(LocationTools.build(currentLoc,0,1*moveDirection));
         if(isFirstMove){
-            moveCandidates.add(LocationTools.build(currentLoc,0,2));
+            moveCandidates.add(LocationTools.build(currentLoc,0,2*moveDirection));
         }
-        moveCandidates.add(LocationTools.build(currentLoc,-1,1));
-        moveCandidates.add(LocationTools.build(currentLoc,1,1));
+        moveCandidates.add(LocationTools.build(currentLoc,-1,1*moveDirection));
+        moveCandidates.add(LocationTools.build(currentLoc,1,1*moveDirection));
 
 
         Map<Location, Spot> locationSpotMap = board.getLocationSpotMap();
@@ -55,6 +59,9 @@ public class Pawn extends Piece implements Movable {
                 locationSpotMap.get(candidate).isOccupied()) {
                 return false;
             }
+            Piece destPiece = locationSpotMap.get(candidate).getPiece();
+            if(destPiece == null){return true;}
+
             return !locationSpotMap.get(candidate).getPiece().getPieceColor().equals(this.getPieceColor());
         }).collect(Collectors.toCollection(ArrayList::new));
     }

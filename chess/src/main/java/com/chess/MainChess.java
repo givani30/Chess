@@ -1,23 +1,21 @@
 package com.chess;
-import com.chess.board.Board;
-import com.chess.common.ChessColor;
-import com.chess.common.File;
-import com.chess.common.Location;
-import com.chess.graphics.UserInterface;
-import com.chess.player.HumanPlayer;
-import com.chess.player.Player;
-import com.chess.spot.Spot;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.*;
-import java.util.HashMap;
+import com.chess.board.Board;
+import com.chess.common.ChessFiles;
+import com.chess.common.Location;
+import com.chess.graphics.ChessGUI;
+import com.chess.graphics.UserInterface;
+
+import javax.swing.*;
 import java.util.Scanner;
+
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
  * Hello world!
  */
 public final class MainChess {
+    private static JFrame frame;
 
     /**
      * Says hello to the world.
@@ -28,29 +26,38 @@ public final class MainChess {
 
         Board board = new Board();
      // board.initBoard();
-     board.loadFEN("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
+    board.loadFEN("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
+//        board.loadFEN("r1b1k1nr/p2p1pNp/n2B4/1p1NP2P/6P1/3P1Q2/P1P1K3/q5b1 w");
 
         board.printBoard();
         Scanner scanner = new Scanner(System.in);
-        drawBoard(board);
-//        while (true){
-//            // E2 -> E4
-//            //After clicking piece-- show available moves for piece
-//
-//            String line = scanner.nextLine();
-//            String[] fromTo =line.split("->");
-//            File fromFile = File.valueOf(String.valueOf(Character.toUpperCase(fromTo[0].charAt(0))));
-//            int fromRank = Integer.parseInt(String.valueOf(fromTo[0].charAt(1)));
-//            File toFile = File.valueOf(String.valueOf(Character.toUpperCase(fromTo[1].charAt(0))));
-//            int toRank = Integer.parseInt(String.valueOf(fromTo[1].charAt(1)));
-//
-//            Location fromLoc = new Location(fromFile,fromRank);
-//            Location toLoc = new Location(toFile,toRank);
-//
-//            board.makeMove(fromLoc,toLoc);
-//            board.printBoard();
-//
-//        }
+        Runnable r = new Runnable() {
+            @Override
+            public void run() {
+            drawBoard(board);
+            }
+        };
+        SwingUtilities.invokeLater(r);
+        while (true){
+            // E2 -> E4
+            //After clicking piece-- show available moves for piece
+
+            String line = scanner.nextLine();
+            if (!line.contains(" ")){
+                continue;
+            }
+            String[] fromTo =line.split(" ");
+            ChessFiles fromFile = ChessFiles.valueOf(String.valueOf(Character.toUpperCase(fromTo[0].charAt(0))));
+            int fromRank = Integer.parseInt(String.valueOf(fromTo[0].charAt(1)));
+            ChessFiles toFile = ChessFiles.valueOf(String.valueOf(Character.toUpperCase(fromTo[1].charAt(0))));
+            int toRank = Integer.parseInt(String.valueOf(fromTo[1].charAt(1)));
+
+            Location fromLoc = new Location(fromFile,fromRank);
+            Location toLoc = new Location(toFile,toRank);
+
+            board.makeMove(fromLoc,toLoc);
+            board.printBoard();
+        }
 
 
 //
@@ -62,13 +69,22 @@ public final class MainChess {
     }
 
     private static void drawBoard(Board board) {
-        JFrame frame = new JFrame("BookStone Chess");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setBounds(10,10,512+15,512+40);
-        frame.setVisible(true);
 //    frame.setUndecorated(true);
         UserInterface ui =new UserInterface(board);
-        frame.add(ui);
+        frame = new JFrame("BookStone Chess");
+        frame.add(ui.getGui());
+        frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        frame.setLocationByPlatform(true);
+        frame.pack();
+        frame.setMinimumSize(frame.getSize());
+        frame.setVisible(true);
+    }
 
+    public static JFrame getFrame() {
+        return frame;
+    }
+
+    public void redrawBoard(){
+        this.getFrame().repaint();
     }
 }

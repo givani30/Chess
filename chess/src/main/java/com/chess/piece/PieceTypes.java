@@ -23,7 +23,7 @@ public enum PieceTypes {
 
     public char getChar(ChessColor color) {
         char character = (char) charVal;
-        if (color.equals(ChessColor.DARK)) {
+        if (color.equals(ChessColor.BLACK)) {
             character = Character.toLowerCase(character);
         }
         return character;
